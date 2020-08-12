@@ -1,7 +1,7 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  trigger_jenkins_job:
     runs-on: ubuntu-latest
     name: A job to test action config
     steps:
@@ -9,7 +9,7 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
+      - name: Trigger job
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: hello
         with:
