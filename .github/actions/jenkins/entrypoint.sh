@@ -15,7 +15,7 @@ url="$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?toke
 echo "$url"
 #protocol="http://"
 
-output=$(curl -i -X  POST $url | grep Location | tail -1 | sed 's/[^ ]* //')
+output=$(curl -i -X  POST "http://${url}" | grep Location | tail -1 | sed 's/[^ ]* //')
 
 echo "This is my output ${output}"
 
