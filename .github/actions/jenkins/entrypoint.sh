@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 url=$1
 token=$2
