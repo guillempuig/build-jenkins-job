@@ -7,6 +7,10 @@ inputs:
     required: true
   jenkins-token:  # id of input
     description: 'token to acces jenkins server'
+    required: true
+  user:
+    description: "user name"
+    required: true
   job-path:  # id of input
     description: 'job/folder_name/job/job_name'
     required: true
@@ -20,4 +24,5 @@ runs:
   args:
     - ${{ inputs.jenkins-url}}
     - ${{ inputs.jenkins-token}}
+    - ${{ inputs.user}}
     - ${{ inputs.job-path }}

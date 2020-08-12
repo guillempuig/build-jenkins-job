@@ -13,8 +13,9 @@ jobs:
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: hello
         with:
-          jenkins-url: "209.11.121.2"
-          jenkins-token: "asams89A9das9"
+          jenkins-url:  ${{ secrets.JENKINS_URL }}
+          jenkins-token:  ${{ secrets.JENKINS_TOKEN }}
+          user: "devops-qa"
           job-path: '/job/Fluid/job/fluid-controller-deploy/'
       # Use the output from the `hello` step
       - name: Get the output time
