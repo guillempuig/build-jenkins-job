@@ -10,7 +10,7 @@ echo "jenkins token $2"
 echo "user $3"
 echo "job path $4"
 
-jenkins_url="http://${user}:${token}@${url}${job_path}"
+jenkins_url="http://"${user}":"${token}"@"${url}""${job_path}""
 echo "$jenkins_url"
 jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
 
