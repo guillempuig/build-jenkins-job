@@ -5,11 +5,7 @@ echo "jenkins token $2"
 echo "user $3"
 echo "job path $4"
 
-IFS=$'\n'
-# shellcheck disable=SC2027
-protocol="http://$3:$2"
-echo $protocol
-jenkins_url="$protocol@$1$4"
+jenkins_url="http://$3:$2@$1$4"
 echo "$jenkins_url"
 jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
 
