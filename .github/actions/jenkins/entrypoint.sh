@@ -1,22 +1,26 @@
 #!/bin/bash
 
-url=$1
-token=$2
-user=$3
-job_path=$4
-echo "jenkins url $1"
-echo "jenkins url ${url}"
-echo "jenkins token $2"
-echo "user $3"
-echo "job path $4"
+
+JENKINS_TOKEN=$2
+JENKINS_USER=$3
+JENKINS_URL=$1
+JOB_PATH=$4
+
+echo "jenkins url $JENKINS_URL"
+echo "jenkins token $JENKINS_TOKEN"
+echo "user $JENKINS_USER"
+echo "job path $JOB_PATH"
+
+url="http://${JENKINS_USER}:${JENKINS_TOKEN}@${JENKINS_URL}${JOB_PATH}/buildWithParameters?token=$JENKINS_TOKEN"
+echo "$url"
 
 echo "http://$3:$4@"
 echo "http://$3:$2@"
 echo "http://$1:$2@"
-jenkins_url="http://${user/$'\r'/}:${token/$'\r'/}@${url/$'\r'/}${job_path/$'\r'/}"
-echo "$jenkins_url"
-jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
-echo "$jenkins_url"
+#jenkins_url="http://${user}:${token}@${url}${job_path}"
+#echo "$jenkins_url"
+#jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
+#echo "$jenkins_url"
 
 # output=$(curl -i -X  POST "$jenkins_url" | grep Location | tail -1 | sed 's/[^ ]* //')
 
