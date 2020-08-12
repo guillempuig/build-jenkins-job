@@ -12,11 +12,11 @@ echo "user $JENKINS_USER"
 echo "job path $JOB_PATH"
 
 url="${JENKINS_USER}:${JENKINS_TOKEN}@${JENKINS_URL}${JOB_PATH}/buildWithParameters?token=$JENKINS_TOKEN"
-echo "http://$url"
-
-echo "http://$3:$4@"
-echo "http://$3:$2@"
-echo "http://$1:$2@"
+protocol=$("http://")
+echo "$protocol$url"
+echo "${protocol}$url"
+# shellcheck disable=SC2039
+echo "${protocol//[$'\t\r\n']}$url"
 #jenkins_url="http://${user}:${token}@${url}${job_path}"
 #echo "$jenkins_url"
 #jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
