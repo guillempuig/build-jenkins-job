@@ -11,7 +11,8 @@ echo "user $3"
 echo "job path $4"
 
 # shellcheck disable=SC2039
-jenkins_url="http://${user//$'\r'/}:${token//$'\r'/}@${url//$'\r'/}${job_path//$'\r'/}"
+echo "$3:$4"
+jenkins_url="http://${user/$'\r'/}:${token/$'\r'/}@${url/$'\r'/}${job_path/$'\r'/}"
 echo "$jenkins_url"
 jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
 echo "$jenkins_url"
