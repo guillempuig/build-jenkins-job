@@ -11,7 +11,7 @@ echo "jenkins token $JENKINS_TOKEN"
 echo "user $JENKINS_USER"
 echo "job path $JOB_PATH"
 
-url="http://$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
+url="$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
 protocol="http://"
 #point=":"
 #arroba="@"
@@ -22,6 +22,8 @@ protocol="http://"
 #echo "$arroba"
 #echo "$extra"
 echo "$url"
+echo "$protocol"
+echo "$protocol$url"
 
 
 
