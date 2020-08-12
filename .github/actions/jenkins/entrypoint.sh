@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
+JENKINS_URL=$1
 JENKINS_TOKEN=$2
 JENKINS_USER=$3
-JENKINS_URL=$1
 JOB_PATH=$4
 
 echo "jenkins url $JENKINS_URL"
@@ -13,7 +13,7 @@ echo "job path $JOB_PATH"
 
 url="$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
 echo "$url"
-protocol="http://\"
+protocol="http://"
 echo "$protocol$url"
 
 output=$(curl -i -X  POST "${url}" | grep Location | tail -1 | sed 's/[^ ]* //')
