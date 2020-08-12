@@ -13,7 +13,7 @@ echo "job path $JOB_PATH"
 
 url="http://$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
 echo "$url"
-protocol="http://$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH"
+protocol="http://$JENKINS_USER:$JENKINS_TOKEN"
 echo "$protocol"
 echo "$protocol$url"
 
