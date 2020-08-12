@@ -12,15 +12,10 @@ echo "user $JENKINS_USER"
 echo "job path $JOB_PATH"
 
 url="\$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
-protocol='http://'
+echo "$url"
 #protocol="http://"
-echo "$protocol$url"
-#jenkins_url="http://${user}:${token}@${url}${job_path}"
-#echo "$jenkins_url"
-#jenkins_url="${jenkins_url}/buildWithParameters?token=$2"
-#echo "$jenkins_url"
 
-output=$(curl -i -X  POST "http://$url" | grep Location | tail -1 | sed 's/[^ ]* //')
+output=$(curl -i -X  POST $url | grep Location | tail -1 | sed 's/[^ ]* //')
 
 echo "This is my output ${output}"
 
