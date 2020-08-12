@@ -6,6 +6,12 @@ echo "user $3"
 echo "job path $4"
 # shellcheck disable=SC2027
 jenkins_url="$3:$2@$1$4/buildWithParameters?token=$2"
+
 echo "$jenkins_url"
+
+output=$(curl -i -X  POST "$jenkins_url" | grep Location | tail -1 | sed 's/[^ ]* //')
+
+echo "This is my output ${output}"
+
 time=$(date)
 echo "::set-output name=time::$time"
