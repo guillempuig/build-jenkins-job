@@ -7,7 +7,7 @@ echo "job path $4"
 # shellcheck disable=SC2027
 protocol="http://"
 echo $protocol
-echo "$protocol$3:${2}@${1}"
+echo "$protocol$3:${2}@"
 jenkins_url="${protocol}$3:$2@$1$4/buildWithParameters?token=$2"
 
 echo "$jenkins_url"
