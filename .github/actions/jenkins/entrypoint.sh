@@ -4,6 +4,8 @@ echo "jenkins url $1"
 echo "jenkins token $2"
 echo "user $3"
 echo "job path $4"
+
+IFS=$'\n'
 # shellcheck disable=SC2027
 protocol="http://$3:$2"
 echo $protocol
