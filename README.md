@@ -4,18 +4,33 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Inputs
 
-### `who-to-greet`
+### `jenkins-token`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required**
+ 
+ ### `jenkins-url`
+
+**Required** 
+
+### `jenkins-user`
+
+**Required** 
+
+### `job_path`
+
+**Required** 
 
 ## Outputs
 
-### `time`
+### `status"
 
-The time we greeted you.
 
 ## Example usage
-
-uses: actions/hello-world-docker-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+```
+    uses: ./.github/actions/jenkins # Uses an action in the root directory
+    with:
+      jenkins-url: ${{ secrets.JENKINS_URL }}
+      jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+      user: "devops-qa"
+      job-path: '/job/Fluid/job/fluid-controller-deploy'
+``
