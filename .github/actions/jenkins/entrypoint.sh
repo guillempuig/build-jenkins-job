@@ -12,7 +12,7 @@ echo "user $JENKINS_USER"
 echo "job path $JOB_PATH"
 
 url="${JENKINS_USER}:${JENKINS_TOKEN}@${JENKINS_URL}${JOB_PATH}/buildWithParameters?token=$JENKINS_TOKEN"
-echo "$url"
+echo "http://$url"
 
 echo "http://$3:$4@"
 echo "http://$3:$2@"
