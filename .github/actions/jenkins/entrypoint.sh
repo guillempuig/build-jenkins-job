@@ -21,6 +21,7 @@ echo "$protocol"
 echo "$point"
 echo "$arroba"
 echo "$extra"
+echo "$protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba"
 echo $protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba
 echo $protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba$JENKINS_URL$JOB_PATH$extra$JENKINS_TOKEN
 echo "$protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba$JENKINS_URL$JOB_PATH$extra$JENKINS_TOKEN"
