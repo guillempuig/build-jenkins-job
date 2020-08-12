@@ -23,7 +23,8 @@ protocol="http://"
 #echo "$extra"
 echo "$url"
 echo "$protocol"
-echo "$protocol$url"
+protocol+=$url
+echo "$protocol"
 
 
 
