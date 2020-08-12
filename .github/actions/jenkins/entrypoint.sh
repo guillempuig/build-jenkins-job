@@ -13,7 +13,7 @@ echo "job path $JOB_PATH"
 
 url="http://$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
 protocol="http://"
-point="."
+point=":"
 arroba="@"
 extra="/buildWithParameters?token="
 echo "$url"
@@ -21,10 +21,8 @@ echo "$protocol"
 echo "$point"
 echo "$arroba"
 echo "$extra"
-echo $protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba$JENKINS_JENKINS_URL$JOB_PATH$extra$JENKINS_TOKEN
+echo $protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba$JENKINS_URL$JENKINS_URL$JOB_PATH$extra$JENKINS_TOKEN
 echo "$protocol$JENKINS_USER$point$JENKINS_TOKEN$arroba$JENKINS_JENKINS_URL$JOB_PATH$extra$JENKINS_TOKEN"
-echo $protocol"$JENKINS_USER"$point"$JENKINS_TOKEN"$arroba"$JENKINS_JENKINS_URL""$JOB_PATH""$extra"$JENKINS_TOKEN
-echo "$protocol$url"
 
 # output=$(curl -i -X  POST "${url}" | grep Location | tail -1 | sed 's/[^ ]* //')
 
