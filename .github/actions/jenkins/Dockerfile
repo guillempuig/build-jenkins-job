@@ -2,12 +2,10 @@
 FROM ubuntu:latest
 
 #install pre-requisites
-RUN apt-get update && apt-get install -y curl && apt-get install dos2unix
+RUN apt-get update && apt-get install -y curl
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
-
-RUN dos2unix /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 # Code file to execute when the docker container starts up (`entrypoint.sh`)

@@ -17,21 +17,36 @@ protocol="http://"
 protocol+="$url"
 echo "${protocol}"
 
-BRANCH_NAME="ASAJDA"
+BRANCH_NAME=""
 
-output=$(curl -i -X  POST "$protocol" \
+queue_url=$(curl -i -X  POST "$protocol" \
    --data "BRANCH_NAME=${BRANCH_NAME}" \
      | grep Location | tail -1 | sed 's/[^ ]* //')
 #
-echo "This is my output ${output}"
+echo "Queue location: ${queue_url}"
 
-# SLEEP
+queue_item=$(echo "${queue_url}" | grep -Po '[\/](\d{4})[\/]')
+queue_number=${queue_item///}
+echo "Job in queue with number: $queue_number"
 
-build_number=$(curl -X GET http://${JENKINS_USER}:${JENKINS_TOKEN}@209.133.201.194:8080/queue/item/1228/api/json?pretty=true | jq '.executable.number')
-echo "This is my build number ${build_number}"
+build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number')
 
-status=$(curl -X GET http://${JENKINS_USER}:${JENKINS_TOKEN}@209.133.201.194:8080/job/Fluid/job/fluid-deploy-service/${build_number}/api/json?petty=true | jq '.result')
-echo "This is my build status ${status}"
+requests=0
+while [ ${build_number} = null ] &&  [ $requests -lt 5 ]; do
+  sleep 2
+  build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number')
+  requests=$((requests+1))
+  echo "Job still in queue..."
+done
+
+
+status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
+while [ $status = null ]; do
+    sleep 1
+    echo "Job running..."
+    status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
+done
+echo "Job finished. Build status: ${status}"
 
 #
 #time=$(date)
