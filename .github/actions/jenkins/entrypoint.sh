@@ -24,10 +24,9 @@ echo $url | cat -A
 
 echo "$url" | cat -A
 
-echo "$url"
 echo "${protocol%$'\r'}"
 protocol+="$url"
-echo "${protocol%$'\r'}"
+echo ${protocol%$'\r'}
 
 output=$(curl -i -X POST "$url" | grep Location | tail -1 | sed 's/[^ ]* //')
 
