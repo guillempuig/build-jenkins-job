@@ -32,6 +32,7 @@ echo "Job in queue with number: $queue_number"
 build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number')
 
 requests=0
+echo "build_number is: "$build_number
 while [ "$build_number" == null ] &&  [ $requests -lt 5 ]; do
   sleep 2
   build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number')
