@@ -16,9 +16,7 @@ protocol="http://"
 echo "$url"
 echo "${protocol%$'\r'}"
 protocol+=$url
-echo "$protocol"
-
-
+echo "${protocol%$'\r'}"
 
 # output=$(curl -i -X  POST "${url}" | grep Location | tail -1 | sed 's/[^ ]* //')
 
