@@ -42,12 +42,18 @@ done
 
 
 status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
-while [ "$status" == "" ]; do
-    sleep 1
-    echo "Job running..."
-    status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
-done
-echo "Job finished. Build status: ${status}"
+echo $status
+
+if [ $status == "" ]
+then
+  echo "void"
+fi
+#while [ "$status" == "" ]; do
+#    sleep 1
+#    echo "Job running..."
+#    status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
+#done
+#echo "Job finished. Build status: ${status}"
 
 #
 #time=$(date)
