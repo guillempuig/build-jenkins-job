@@ -33,7 +33,7 @@ build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_numb
 
 requests=0
 echo "build_number is: "$build_number
-while [ "$build_number" == null ] &&  [ $requests -lt 5 ]; do
+while [ "$build_number" == "" ] &&  [ $requests -lt 5 ]; do
   sleep 2
   build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number')
   requests=$((requests+1))
@@ -42,7 +42,7 @@ done
 
 
 status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
-while [ "$status" == null ]; do
+while [ "$status" == "" ]; do
     sleep 1
     echo "Job running..."
     status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
