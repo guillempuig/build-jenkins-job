@@ -40,11 +40,12 @@ while [ "$build_number" == "" ] &&  [ $requests -lt 5 ]; do
   echo "Job still in queue..."
 done
 
+echo "build_number is: "$build_number
 
 status=$(curl --silent --output -X GET $JENKINS_URL/job/Fluid/job/fluid-controller-deploy/${build_number}/api/json?petty=true | jq '.result')
 echo $status
 
-if [ $status == "" ]
+if [ "$status" == "" ]
 then
   echo "void"
 fi
