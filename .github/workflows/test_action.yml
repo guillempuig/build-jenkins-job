@@ -13,7 +13,7 @@ jobs:
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: hello
         with:
-          jenkins-url: ${{ secrets.JENKINS_URL }}
+          jenkins-url: "209.133.201.194:8080"
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: 'devops-qa'
           job-path: '/job/Fluid/job/fluid-controller-deploy'
