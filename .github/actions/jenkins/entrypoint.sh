@@ -29,8 +29,8 @@ queue_item=$(echo "${queue_url}" | grep -Po '[\/](\d{4})[\/]')
 queue_number=${queue_item///}
 echo "Job in queue with number: $queue_number"
 
-build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number' )
-echo $build_number
+#build_number=$(curl --silent --output -X GET $JENKINS_URL/queue/item/$queue_number/api/json?pretty=true | jq '.executable.number' )
+#echo $build_number
 
 #if [ "$build_number" == "" ]
 #then
