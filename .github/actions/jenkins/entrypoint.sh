@@ -14,28 +14,17 @@ echo "job path $JOB_PATH"
 url="$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
 protocol="http://"
 
-echo $url
-
-echo "$url"
-
-echo $protocol | cat -A
-
-echo $url | cat -A
-
-echo "$url" | cat -A
-
-echo "${protocol%$'\r'}"
 protocol+="$url"
 echo "${protocol}"
 
-url2="http://$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
+BRANCH_NAME="ASAJDA"
 
-echo "$url2"
-
-echo $url2
-output=$(curl -i -X POST "$url2" | grep Location | tail -1 | sed 's/[^ ]* //')
-
+output=$(curl -i -X  POST "$protocol" \
+   --data "BRANCH_NAME=${BRANCH_NAME}" \
+     | grep Location | tail -1 | sed 's/[^ ]* //')
+#
 echo "This is my output ${output}"
+#
+#time=$(date)
+#echo "::set-output name=time::$time"
 
-time=$(date)
-echo "::set-output name=time::$time"
