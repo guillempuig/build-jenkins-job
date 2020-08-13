@@ -15,7 +15,7 @@ jobs:
         with:
           jenkins-url: ${{ secrets.JENKINS_URL }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-          user: 'devops-qa'
+          user: 'http://devops-qa'
           job-path: '/job/Fluid/job/fluid-controller-deploy'
       # Use the output from the `hello` step
       - name: Get the output time
