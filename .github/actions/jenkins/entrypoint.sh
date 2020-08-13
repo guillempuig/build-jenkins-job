@@ -26,9 +26,14 @@ echo "$url" | cat -A
 
 echo "${protocol%$'\r'}"
 protocol+="$url"
-echo ${protocol%$'\r'}
+echo "${protocol}"
 
-output=$(curl -i -X POST "$url" | grep Location | tail -1 | sed 's/[^ ]* //')
+url2="http://$JENKINS_USER:$JENKINS_TOKEN@$JENKINS_URL$JOB_PATH/buildWithParameters?token=$JENKINS_TOKEN"
+
+echo "$url2"
+
+echo $url2
+output=$(curl -i -X POST "$url2" | grep Location | tail -1 | sed 's/[^ ]* //')
 
 echo "This is my output ${output}"
 
