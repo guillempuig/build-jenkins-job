@@ -18,9 +18,7 @@ echo "${protocol%$'\r'}"
 protocol+=$url
 echo "${protocol%$'\r'}"
 
-url=google.com
-
-output=$(curl -i -X  POST "$url" | grep Location | tail -1 | sed 's/[^ ]* //')
+output=$(curl -i -X POST "$url" | grep Location | tail -1 | sed 's/[^ ]* //')
 
 echo "This is my output ${output}"
 
