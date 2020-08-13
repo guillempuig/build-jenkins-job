@@ -20,7 +20,7 @@ echo "${protocol}"
 
 
 queue_url=$(curl -i -X  POST "$protocol" \
-   --data "QUEUE_TIMEOUT=$QUEUE_TIMEOUT" \
+   --data "QUEUE_TIMEOUT=2" \
      | grep Location | tail -1 | sed 's/[^ ]* //')
 #
 echo "Queue location: ${queue_url}"
