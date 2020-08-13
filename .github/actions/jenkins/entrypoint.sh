@@ -25,7 +25,7 @@ output=$(curl -i -X  POST "$protocol" \
 #
 echo "This is my output ${output}"
 
-build_number=$(curl -X GET http://${JENKINS_USER}:${JENKINS_TOKEN}@209.133.201.194:8080/queue/item/1225/api/json?pretty=true | jq '.executable.number')
+build_number=$(curl -X GET http://${JENKINS_USER}:${JENKINS_TOKEN}@209.133.201.194:8080/queue/item/1227/api/json?pretty=true | jq '.executable.number')
 echo "This is my build number ${build_number}"
 
 status=$(curl -X GET http://${JENKINS_USER}:${JENKINS_TOKEN}@209.133.201.194:8080/job/Fluid/job/fluid-deploy-service/${build_number}/api/json?petty=true | jq '.result')
