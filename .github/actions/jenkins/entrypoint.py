@@ -19,7 +19,8 @@ version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
 # build job
-server.build_job('Fluid/fluid-controller-deploy', parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
+job_name = JOB_PATH.replace("/job", "")[1:]
+server.build_job(job_name, parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 queue_id = queue_info[0].get('id')
 
