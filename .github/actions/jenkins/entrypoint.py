@@ -28,7 +28,7 @@ id = queue_info[0].get('id')
 print(queue_info)
 print(id)
 
-url = f"http://devops-qa:{JENKINS_TOKEN}@209.133.201.194:8080/queue/item/{id}/api/json?pretty=true"
+url = f"http://209.133.201.194:8080/queue/item/{id}/api/json?pretty=true"
 print(url)
 #
 x = requests.get(url)
