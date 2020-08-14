@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# use of https://python-jenkins.readthedocs.io/en/latest/index.html
+
 import sys
 import requests
 import jenkins
@@ -35,11 +37,17 @@ print(url)
 x = requests.get(url)
 print(x)
 print(x.status_code)
+resp = x.json()
 
-if "executable" not in x.json():
-    time.sleep(10)
+while "executable" not in resp:
+    time.sleep(3)
     x = requests.get(url)
-    print(x.json())
+    resp = x.json()
+    print(resp)
+
+build_number = resp["executable"]["number"]
+build_info = server.get_build_info(name='Fluid/fluid-controller-deploy', number=build_number)
+print(build_info)
 
 
 # print()
