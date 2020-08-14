@@ -9,6 +9,6 @@ COPY entrypoint.py /entrypoint.py
 COPY init.sh /init.sh
 
 RUN chmod +x /init.sh
-
+WORKDIR /
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/init.sh"]
+ENTRYPOINT ["python", "entrypoint"]
