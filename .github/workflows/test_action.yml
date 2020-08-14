@@ -3,18 +3,26 @@ on: [push]
 jobs:
   trigger_jenkins_job:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
     name: A job to test action config
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+          uses: actions/setup-python@v1
+          with:
+            python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Trigger job
+      - name: Deploy controller
+        if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: job-build
         with:
