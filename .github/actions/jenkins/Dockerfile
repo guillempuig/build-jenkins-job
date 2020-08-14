@@ -15,5 +15,5 @@ WORKDIR /
 
 RUN echo $(ls -1)
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/init.sh"]
+ENTRYPOINT ["/entrypoint.py"]
 # ENTRYPOINT ["python", "entrypoint.py"]
