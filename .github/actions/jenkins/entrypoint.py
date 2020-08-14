@@ -16,7 +16,8 @@ print(JOB_PATH)
 url = "http://"+JENKINS_USER+":"+JENKINS_TOKEN+"@"+JENKINS_URL+JOB_PATH+"/buildWithParameters?token="+JENKINS_TOKEN
 print(url)
 
-x = requests.post(url, data={"QUEUE_TIMEOUT": "2"})
+x = requests.post(url, data={"QUEUE_TIMEOUT": "2"}).json()
+print(x)
 print(x.status_code)
 print(x.json())
 
