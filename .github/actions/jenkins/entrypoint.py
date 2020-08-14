@@ -56,6 +56,7 @@ def get_status(job_name: str, build_number: int) -> str:
 
 
 while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
+    print("using walrus")
     time.sleep(3)
 
 print(status)
