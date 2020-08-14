@@ -15,3 +15,5 @@ echo "job path $JOB_PATH"
 cd /
 
 ls -l
+
+./entrypoint.py $1 $2 $3 $4
