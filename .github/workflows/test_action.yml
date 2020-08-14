@@ -20,3 +20,16 @@ jobs:
       # Use the output from the `hello` step
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
+      - name: Integration test
+        run: |
+          pip install pytest
+          cd tests/
+          pytest
+      - name: Stop controller
+        uses: ./.github/actions/jenkins # Uses an action in the root directory
+        id: stop-job
+        with:
+          jenkins-url: ${{ secrets.JENKINS_URL }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          user: 'devops-qa'
+          job-path: '/job/Fluid/job/fluid-controller-stop'
