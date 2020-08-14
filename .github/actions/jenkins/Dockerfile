@@ -9,6 +9,7 @@ COPY entrypoint.py /entrypoint.py
 COPY init.sh /init.sh
 
 RUN chmod +x /init.sh
+RUN chmod +x /entrypoint.py
 RUN echo $(ls -1 /)
 WORKDIR /
 
