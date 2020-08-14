@@ -28,7 +28,7 @@ id = queue_info[0].get('id')
 print(queue_info)
 print(id)
 
-url = f"$JENKINS_URL/queue/item/{id}/api/json?pretty=true"
+url = f"{JENKINS_URL}/queue/item/{id}/api/json?pretty=true"
 print(url)
 #
 x = requests.get(url)
