@@ -49,4 +49,4 @@ while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
     time.sleep(1)
 
 print(f"Job status is : {status}")
-print(f"::set-output name=myOutput::{status}")
+print(f"::set-output name=job_status::{status}")
