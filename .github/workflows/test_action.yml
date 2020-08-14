@@ -27,9 +27,11 @@ jobs:
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
       - name: Integration test
         run: |
+          pip install pytest
           cd tests/
-          pytest -p no:warnings
+          pytest
       - name: Stop controller
+        if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: stop-job
         with:
