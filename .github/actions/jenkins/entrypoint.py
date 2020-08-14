@@ -19,11 +19,18 @@ user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
-url = "http://"+JENKINS_USER+":"+JENKINS_TOKEN+"@"+JENKINS_URL+JOB_PATH+"/buildWithParameters?token="+JENKINS_TOKEN
-print(url)
+server.build_job('foo')
+queue_info = server.get_queue_info()
+id = queue_info[0].get('id')
 
-x = requests.post(url, data={"QUEUE_TIMEOUT": "2"})
-print(x)
-print(x.status_code)
-print(x.json())
+print(queue_info)
+print(id)
+
+# url = "http://"+JENKINS_USER+":"+JENKINS_TOKEN+"@"+JENKINS_URL+JOB_PATH+"/buildWithParameters?token="+JENKINS_TOKEN
+# print(url)
+#
+# x = requests.post(url, data={"QUEUE_TIMEOUT": "2"})
+# print(x)
+# print(x.status_code)
+# print()
 
