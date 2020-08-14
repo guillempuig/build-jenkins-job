@@ -2,18 +2,19 @@
 FROM python:3.7
 
 #install pre-requisites
-RUN apt-get update # && apt-get install -y curl && apt-get -y install jq
+RUN apt-get update
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.py /entrypoint.py
-COPY init.sh /init.sh
+COPY requirements.txt /requirements.txt
 
-RUN chmod +x /init.sh
 RUN chmod +x /entrypoint.py
-RUN echo $(ls -1 /)
+
 WORKDIR /
 
+RUN pip install -r requirements.txt
+
 RUN echo $(ls -1)
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
+# Code file to execute when the docker container starts up (`entrypoint.py`)
 ENTRYPOINT ["/entrypoint.py"]
 # ENTRYPOINT ["python", "entrypoint.py"]
