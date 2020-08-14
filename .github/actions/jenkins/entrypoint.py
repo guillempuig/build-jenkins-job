@@ -47,10 +47,15 @@ while "executable" not in resp:
 
 build_number = resp["executable"]["number"]
 print(build_number)
-build_info = server.get_build_info(name='Fluid/fluid-controller-deploy', number=build_number)
-time.sleep(10)
-print(build_info)
 
 
-# print()
+def get_status(job_name: str, build_number: int) -> str:
+    build_info = server.get_build_info(name=job_name, number=build_number)
+    job_status = build_info["result"]
+    return job_status
 
+
+while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
+    time.sleep(3)
+
+print(status)

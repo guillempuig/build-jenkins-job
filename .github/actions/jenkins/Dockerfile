@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM python:3.7
+FROM python:3.8
 
 #install pre-requisites
 RUN apt-get update
