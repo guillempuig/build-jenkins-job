@@ -9,6 +9,11 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install flake8 pytest
+            if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Trigger job
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: job-build
@@ -22,9 +27,8 @@ jobs:
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
       - name: Integration test
         run: |
-          pip install pytest
           cd tests/
-          pytest
+          pytest -p no:warnings
       - name: Stop controller
         uses: ./.github/actions/jenkins # Uses an action in the root directory
         id: stop-job
