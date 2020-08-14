@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import sys
-import requests
+# import requests
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]
@@ -15,7 +15,9 @@ print(JOB_PATH)
 url = "http://"+JENKINS_USER+":"+JENKINS_TOKEN+"@"+JENKINS_URL+JOB_PATH+"/buildWithParameters?token="+JENKINS_TOKEN
 print(url)
 
-x = requests.post(url, data={"QUEUE_TIMEOUT": "2"})
 
-print(x.text)
+
+# x = requests.post(url, data={"QUEUE_TIMEOUT": "2"})
+#
+# print(x.text)
 
