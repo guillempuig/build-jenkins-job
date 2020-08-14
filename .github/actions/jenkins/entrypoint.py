@@ -6,46 +6,36 @@ import sys
 import requests
 import jenkins
 import time
-import subprocess
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]
 JENKINS_USER = sys.argv[3]
 JOB_PATH = sys.argv[4]
 
-print(JENKINS_URL)
-print(JENKINS_USER)
-print(JENKINS_TOKEN)
-print(JOB_PATH)
-
+# create/connect jenkins server
 server = jenkins.Jenkins(f"http://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
 user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
-
+# build job
 server.build_job('Fluid/fluid-controller-deploy', parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
-id = queue_info[0].get('id')
+queue_id = queue_info[0].get('id')
 
-print(queue_info)
-print(id)
+# define url to request build_number
+url = f"http://{JENKINS_USER}:{JENKINS_TOKEN}@{JENKINS_URL}/queue/item/{queue_id}/api/json?pretty=true"
 
-url = f"http://{JENKINS_USER}:{JENKINS_TOKEN}@{JENKINS_URL}/queue/item/{id}/api/json?pretty=true"
-print(url)
-#
-x = requests.get(url)
-print(x)
-print(x.status_code)
-resp = x.json()
 
-while "executable" not in resp:
+def get_trigger_info(url: str):
+    trigger_info = requests.get(url).json()
+    return trigger_info
+
+
+while "executable" not in (info := get_trigger_info(url)):
     time.sleep(3)
-    x = requests.get(url)
-    resp = x.json()
-    print(resp)
 
-build_number = resp["executable"]["number"]
+build_number = info["executable"]["number"]
 print(build_number)
 
 
@@ -59,6 +49,3 @@ while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
     time.sleep(1)
 
 print(status)
-
-subprocess.run('echo "::set-output name=job_status::$status"', shell=True)
-#echo "::set-output name=time::$time"
