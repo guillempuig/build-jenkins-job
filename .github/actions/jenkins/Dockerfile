@@ -2,7 +2,7 @@
 FROM python:3.7
 
 #install pre-requisites
-RUN apt-get update && apt-get install -y curl && apt-get -y install jq
+RUN apt-get update # && apt-get install -y curl && apt-get -y install jq
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.py /entrypoint.py
