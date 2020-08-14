@@ -46,7 +46,7 @@ def get_status(job_name: str, build_number: int) -> str:
     return job_status
 
 
-while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
+while not (status := get_status(job_name, build_number)):
     time.sleep(1)
 
 print(f"Job status is : {status}")
