@@ -19,7 +19,7 @@ user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
-server.build_job('Fluid/fluid-controller-deploy')
+server.build_job('Fluid/fluid-controller-deploy', parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 id = queue_info[0].get('id')
 
