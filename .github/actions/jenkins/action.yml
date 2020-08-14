@@ -16,7 +16,7 @@ inputs:
     required: true
     default: '/'
 outputs:
-  status: # id of output
+  job_status: # id of output
     description: 'Build status'
 runs:
   using: 'docker'

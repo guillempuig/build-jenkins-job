@@ -6,6 +6,7 @@ import sys
 import requests
 import jenkins
 import time
+import os
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]
@@ -22,8 +23,7 @@ user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
-# jobs = server.get_jobs()
-# print(jobs)
+
 server.build_job('Fluid/fluid-controller-deploy', parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 id = queue_info[0].get('id')
@@ -59,3 +59,7 @@ while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
     time.sleep(1)
 
 print(status)
+
+print(os.environ)
+
+#echo "::set-output name=time::$time"
