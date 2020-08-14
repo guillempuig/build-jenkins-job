@@ -18,5 +18,5 @@ jobs:
           user: 'devops-qa'
           job-path: '/job/Fluid/job/fluid-controller-deploy'
       # Use the output from the `hello` step
-      - name: Get the output time
+      - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"

@@ -6,7 +6,7 @@ import sys
 import requests
 import jenkins
 import time
-import os
+import subprocess
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]
@@ -60,6 +60,5 @@ while not (status := get_status('Fluid/fluid-controller-deploy', build_number)):
 
 print(status)
 
-print(os.environ)
-
+subprocess.run('echo "::set-output name=job_status::$status"', shell=True)
 #echo "::set-output name=time::$time"
