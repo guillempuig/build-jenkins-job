@@ -14,7 +14,7 @@ print(JENKINS_USER)
 print(JENKINS_TOKEN)
 print(JOB_PATH)
 
-server = jenkins.Jenkins(JENKINS_USER, username=JENKINS_USER, password=JENKINS_TOKEN)
+server = jenkins.Jenkins(JENKINS_URL, username=JENKINS_USER, password=JENKINS_TOKEN)
 user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
