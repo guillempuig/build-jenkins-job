@@ -46,7 +46,9 @@ while "executable" not in resp:
     print(resp)
 
 build_number = resp["executable"]["number"]
+print(build_number)
 build_info = server.get_build_info(name='Fluid/fluid-controller-deploy', number=build_number)
+time.sleep(10)
 print(build_info)
 
 
