@@ -19,6 +19,8 @@ user = server.get_whoami()
 version = server.get_version()
 print('Hello %s from Jenkins %s' % (user['fullName'], version))
 
+jobs = server.get_jobs()
+print(jobs)
 server.build_job('Fluid/fluid-controller-deploy', parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 id = queue_info[0].get('id')
@@ -26,11 +28,13 @@ id = queue_info[0].get('id')
 print(queue_info)
 print(id)
 
-# url = "http://"+JENKINS_USER+":"+JENKINS_TOKEN+"@"+JENKINS_URL+JOB_PATH+"/buildWithParameters?token="+JENKINS_TOKEN
-# print(url)
+url = f"$JENKINS_URL/queue/item/{id}/api/json?pretty=true"
+print(url)
 #
-# x = requests.post(url, data={"QUEUE_TIMEOUT": "2"})
-# print(x)
-# print(x.status_code)
+x = requests.get(url)
+print(x)
+print(x.status_code)
+
+
 # print()
 
