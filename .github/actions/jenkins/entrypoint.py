@@ -9,6 +9,6 @@ def greed():
 
 
 greed()
-print(f"This is the name of the script: {sys.argv[0]}")
-print(f"Number of arguments: {len(sys.argv)}")
-print(f"The arguments are:  {str(sys.argv)}")
+print(sys.argv[0])
+print(len(sys.argv))
+print(str(sys.argv))
