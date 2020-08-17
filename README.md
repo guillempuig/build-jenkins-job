@@ -38,7 +38,6 @@ i.e
 * FAILURE
 * SUCCESS
 * ABORTED
-* None => running
 
 
 ## Example usage
