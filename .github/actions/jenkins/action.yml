@@ -28,3 +28,4 @@ runs:
     - ${{ inputs.jenkins-token}}
     - ${{ inputs.user}}
     - ${{ inputs.job-path }}
+    - ${{ inputs.job-params}}
