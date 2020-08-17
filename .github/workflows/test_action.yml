@@ -50,4 +50,4 @@ jobs:
           job-path: '/job/Fluid/job/fluid-controller-stop'
           job-params: '{"QUEUE_TIMEOUT": "2"}'
       - name: Get the job status
-          run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
+        run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
