@@ -6,21 +6,23 @@ import sys
 import requests
 import jenkins
 import time
+import json
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]
 JENKINS_USER = sys.argv[3]
 JOB_PATH = sys.argv[4]
+JOB_PARAMS = sys.argv[5]
 
 # create/connect jenkins server
 server = jenkins.Jenkins(f"http://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
 user = server.get_whoami()
 version = server.get_version()
-print('Hello %s from Jenkins %s' % (user['fullName'], version))
+print(f"Hello {user['fullName']} from Jenkins {version}")
 
 # build job
 job_name = JOB_PATH.replace("/job", "")[1:]
-server.build_job(job_name, parameters={"QUEUE_TIMEOUT": "2"}, token=JENKINS_TOKEN)
+server.build_job(job_name, parameters=json.loads(JOB_PARAMS), token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 queue_id = queue_info[0].get('id')
 
@@ -37,11 +39,11 @@ while "executable" not in (info := get_trigger_info(url)):
     time.sleep(3)
 
 build_number = info["executable"]["number"]
-print(build_number)
+print(f"BUILD NUMBER: {build_number}")
 
 
-def get_status(job_name: str, build_number: int) -> str:
-    build_info = server.get_build_info(name=job_name, number=build_number)
+def get_status(name: str, number: int) -> str:
+    build_info = server.get_build_info(name=name, number=number)
     job_status = build_info["result"]
     return job_status
 
