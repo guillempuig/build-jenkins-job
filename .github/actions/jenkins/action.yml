@@ -1,6 +1,6 @@
 # action.yml
 name: 'Build Jenkins job'
-description: 'Build jenkins job by curl request'
+description: 'Trigger jenkins job'
 inputs:
   jenkins-url:  # id of input
     description: 'jenkins server url'

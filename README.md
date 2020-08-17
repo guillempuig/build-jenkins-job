@@ -1,6 +1,6 @@
 # Hello world docker action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action builds/triggers a jenkins job, waiting it to be finished and enabling to pass job params.
 
 ## Inputs
 
@@ -16,21 +16,41 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 **Required** 
 
-### `job_path`
+### `job-path`
 
 **Required** 
 
+### `job-params`
+
+**Not mandatory**
+
+Set jenkins params as JSON string:
+i.e 
+```
+ "{'param1': 'value1', 'param2': 'value2'}"
+``` 
+
+
 ## Outputs
 
-### `status"
+###  `status/result`
+
+* FAILURE
+* SUCCESS
+* ABORTED
+* None => running
 
 
 ## Example usage
 ```
-    uses: ./.github/actions/jenkins # Uses an action in the root directory
-    with:
-      jenkins-url: ${{ secrets.JENKINS_URL }}
-      jenkins-token: ${{ secrets.JENKINS_TOKEN }}
-      user: "devops-qa"
-      job-path: '/job/Fluid/job/fluid-controller-deploy'
+    - name: "Trigger jenkins job"
+      uses: ./.github/actions/jenkins # Uses an action in the root directory
+      with:
+        jenkins-url: ${{ secrets.JENKINS_URL }}
+        jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+        user: "jenkins-username"
+        job-path: "/job/Fluid/job/fluid-controller-deploy"
+        job-params: "{'param1': 'value1', 'param2': 'value2'}"
+    - name: Get job status
+      run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
 ``
