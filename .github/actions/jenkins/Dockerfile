@@ -2,7 +2,7 @@
 FROM python:3.8-alpine
 
 #install pre-requisites
-RUN apt-get update
+RUN apk add --update python py-pip
 
 RUN pip install --upgrade pip
 # Copies your code file from your action repository to the filesystem path `/` of the container
