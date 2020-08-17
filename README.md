@@ -1,4 +1,4 @@
-# Build jenkins job as a Github Action :rocket:
+# Build jenkins job from Github Action :rocket:
 
 This action builds/triggers a jenkins job, waiting it to be finished and enabling to pass job params.
 
