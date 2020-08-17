@@ -1,8 +1,8 @@
 # Container image that runs your code
-FROM python:3.8-alpine
+FROM python:3.8
 
 #install pre-requisites
-#RUN apk add --update python py-pip
+RUN apt-get update
 
 RUN pip install --upgrade pip
 # Copies your code file from your action repository to the filesystem path `/` of the container
