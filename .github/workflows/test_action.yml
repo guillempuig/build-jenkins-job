@@ -35,11 +35,18 @@ jobs:
           job-params: '{"ENV": "dev", "CLIENT": "gs", "PORT": ${{ env.PORT}}}'
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
-      - name: Integration test
+      - name: Check controller is running
         run: |
           pip install pytest
           cd tests/
           pytest test_controller_running.py
+        env:
+          TESTING_SERVER_URL: "http://209.133.199.114"
+          CONTROLLER_PORT: ${{ env.PORT}}
+      - name: Check register service
+        run: |
+          cd tests/
+          pytest test_register_service.py
         env:
           TESTING_SERVER_URL: "http://209.133.199.114"
           CONTROLLER_PORT: ${{ env.PORT}}
