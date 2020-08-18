@@ -3,6 +3,7 @@ on: [push]
 jobs:
   trigger_jenkins_job:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       matrix:
         python-version: [3.8]

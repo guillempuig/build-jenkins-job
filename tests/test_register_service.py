@@ -33,5 +33,5 @@ def test_register_service():
 
     res_service = requests.get(service_url)
     assert res_service.status_code == 200
-    time.sleep(50)
+
 
