@@ -21,6 +21,7 @@ controller = URL + ":" + PORT
 
 
 def test_register_service():
+    time.sleep(60)
     service = config["service"]
     fluid_controller = f"{controller}/service"
     # register service
