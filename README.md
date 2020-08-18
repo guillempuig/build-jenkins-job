@@ -1,4 +1,4 @@
-# Hello world docker action
+# Build jenkins job from Github Action :rocket:
 
 This action builds/triggers a jenkins job, waiting it to be finished and enabling to pass job params.
 
@@ -38,7 +38,6 @@ i.e
 * FAILURE
 * SUCCESS
 * ABORTED
-* None => running
 
 
 ## Example usage
