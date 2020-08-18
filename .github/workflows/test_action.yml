@@ -33,7 +33,6 @@ jobs:
           user: 'devops-qa'
           job-path: '/job/Fluid/job/fluid-controller-deploy'
           job-params: '{"ENV": "dev", "CLIENT": "gs", "PORT": ${{ env.PORT}}}'
-      # Use the output from the `hello` step
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
       - name: Integration test
