@@ -1,6 +1,4 @@
 # This tests aims to create a service and register it to fluid_controller
-import time
-
 import os
 
 import requests
@@ -9,7 +7,7 @@ config = {
     "fluid_controller": "scrapper12",
     "service":
         {
-            "service_name": "testing",
+            "service_name": "testing_image",
             "service_version": "1.0",
             "docker_image": "docker-reg.goldenspear.com/goldenspear_ai/testing_image:latest",
         }
@@ -41,5 +39,5 @@ def test_register_service():
     print(services)
     assert isinstance(services, list)
     assert len(services) == 1
-    assert services[0]['name'] == 'gs_dev_testing'
+    assert services[0]['name'] == 'testing_image'
 
