@@ -27,11 +27,11 @@ def test_register_service():
     resp = requests.post(fluid_controller, json=service)
     # assert request response is successful
     assert resp.status_code == 200
+    assert resp.json()["status"] == 'Success'
 
     service_name = service["service_name"]
     service_url = f"{controller}/{service_name}"
 
     res_service = requests.get(service_url)
     assert res_service.status_code == 200
-
 
