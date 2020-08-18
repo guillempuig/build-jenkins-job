@@ -51,6 +51,13 @@ jobs:
         env:
           TESTING_SERVER_URL: "http://209.133.199.114"
           CONTROLLER_PORT: ${{ env.PORT}}
+      - name: Check remove service
+        run: |
+          cd tests/
+          pytest test_remove_service.py
+        env:
+          TESTING_SERVER_URL: "http://209.133.199.114"
+          CONTROLLER_PORT: ${{ env.PORT}}
       - name: Stop controller
         if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
