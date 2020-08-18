@@ -1,4 +1,5 @@
 import os
+import time
 
 import requests
 
@@ -20,3 +21,4 @@ def test_remove_service():
     services = requests.get(fluid_controller)
     assert services.status_code == 200
     assert len(list(filter(lambda service: service['name'] == 'testing_image', services.json()))) == 0
+    time.sleep(30)
