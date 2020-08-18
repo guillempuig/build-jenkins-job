@@ -23,11 +23,11 @@ controller = URL + ":" + PORT
 def test_register_service():
     time.sleep(60)
     service = config["service"]
+    print(service)
     fluid_controller = f"{controller}/service"
     # register service
     resp = requests.post(fluid_controller, service)
     print(resp)
-    print(resp.json())
     # assert request response is successful
     assert resp.status_code == 200
 
