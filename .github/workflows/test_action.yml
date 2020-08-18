@@ -39,7 +39,10 @@ jobs:
         run: |
           pip install pytest
           cd tests/
-          pytest
+          pytest test_controller_running.py
+        env:
+          TESTING_SERVER_URL: "http://209.133.199.114"
+          CONTROLLER_PORT: ${{ env.PORT}}
       - name: Stop controller
         if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
