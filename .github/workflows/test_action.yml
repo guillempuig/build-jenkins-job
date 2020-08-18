@@ -21,6 +21,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Set controller port
+        run: echo '::set-env name=PORT::8500'
       - name: Deploy controller
         if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
@@ -30,7 +32,7 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: 'devops-qa'
           job-path: '/job/Fluid/job/fluid-controller-deploy'
-          job-params: '{"ENV": "dev", "CLIENT": "gs", "PORT": "8500"}'
+          job-params: '{"ENV": "dev", "CLIENT": "gs", "PORT":' $PORT '}'
       # Use the output from the `hello` step
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
