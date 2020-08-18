@@ -35,3 +35,11 @@ def test_register_service():
     res_service = requests.get(service_url)
     assert res_service.status_code == 200
 
+    # list controller services (one added)
+    url = f"{controller}/services"
+    services = requests.get(url).json()
+    print(services)
+    assert isinstance(services, list)
+    assert len(services) == 1
+    assert 'gs_dev_testing' in services
+
