@@ -11,3 +11,4 @@ def test_controller_is_running():
     resp = requests.get(controller + endpoint)
     assert resp.status_code == 200
     assert isinstance(resp.json(), list)
+    assert len(resp.json()) == 0
