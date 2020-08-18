@@ -56,5 +56,5 @@ while not (status := get_status(job_name, build_number)):
 print(f"Job status is : {status}")
 print(f"::set-output name=job_status::{status}")
 
-if status == 'SUCCESS':
+if status != 'SUCCESS':
     exit(1)
