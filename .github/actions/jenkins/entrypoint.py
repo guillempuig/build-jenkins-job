@@ -51,5 +51,7 @@ def get_status(name: str, number: int) -> str:
 while not (status := get_status(job_name, build_number)):
     time.sleep(1)
 
+example="env"
 print(f"Job status is : {status}")
+print(f"::set-env name=example::{example}")
 print(f"::set-output name=job_status::{status}")
