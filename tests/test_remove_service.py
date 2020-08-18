@@ -4,13 +4,13 @@ import requests
 
 URL = os.environ['TESTING_SERVER_URL']
 PORT = os.environ['CONTROLLER_PORT']
+SERVICE_NAME = os.environ['SERVICE_NAME']
 controller = URL + ":" + PORT
 
 
 def test_remove_service():
-    service_name = "testing_image"
     fluid_controller = f"{controller}"
-    rm_url = fluid_controller+f"/service/{service_name}"
+    rm_url = fluid_controller+f"/service/{SERVICE_NAME}"
 
     rm_resp = requests.delete(rm_url)
     assert rm_resp.status_code == 200

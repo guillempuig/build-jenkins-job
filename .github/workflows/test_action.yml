@@ -58,6 +58,7 @@ jobs:
         env:
           TESTING_SERVER_URL: "http://209.133.199.114"
           CONTROLLER_PORT: ${{ env.PORT}}
+          SERVICE_NAME: "testing_image"
       - name: Stop controller
         if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
