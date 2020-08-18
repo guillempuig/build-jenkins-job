@@ -5,13 +5,11 @@ import requests
 
 URL = os.environ['TESTING_SERVER_URL']
 PORT = os.environ['CONTROLLER_PORT']
-CLIENT = 'gs'
-ENV = 'dev'
 controller = URL + ":" + PORT
 
 
 def test_remove_service():
-    service_name = f"{CLIENT}_{ENV}_testing_image"
+    service_name = "testing_image"
     fluid_controller = f"{controller}/service"
 
     rm_resp = requests.delete(fluid_controller+f"/{service_name}")
