@@ -14,8 +14,6 @@ JENKINS_USER = sys.argv[3]
 JOB_PATH = sys.argv[4]
 JOB_PARAMS = sys.argv[5]
 
-print(JOB_PARAMS)
-
 # create/connect jenkins server
 server = jenkins.Jenkins(f"http://{JENKINS_URL}", username=JENKINS_USER, password=JENKINS_TOKEN)
 user = server.get_whoami()
