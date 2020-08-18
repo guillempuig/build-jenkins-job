@@ -51,5 +51,3 @@ jobs:
           job-params: '{"ENV": "dev", "CLIENT": "gs"}'
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
-      - name: use env var
-        run: echo "$example"
