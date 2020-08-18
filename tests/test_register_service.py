@@ -39,5 +39,5 @@ def test_register_service():
     print(services)
     assert isinstance(services, list)
     assert len(services) == 1
-    assert services[0]['name'] == 'testing_image'
+    assert services[-1]['name'] == 'testing_image'
 
