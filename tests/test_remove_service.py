@@ -1,5 +1,4 @@
 import os
-import time
 
 import requests
 
@@ -13,11 +12,9 @@ def test_remove_service():
     fluid_controller = f"{controller}"
     rm_url = fluid_controller+f"/service/{service_name}"
 
-
     rm_resp = requests.delete(rm_url)
     assert rm_resp.status_code == 200
 
-    time.sleep(100)
     # retrieve list of services and check testing_image has been removed
     services = requests.get(fluid_controller+"/services")
     assert services.status_code == 200
