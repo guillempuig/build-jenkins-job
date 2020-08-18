@@ -11,8 +11,13 @@ controller = URL + ":" + PORT
 def test_remove_service():
     service_name = "testing_image"
     fluid_controller = f"{controller}/service"
+    rm_url = fluid_controller+f"/{service_name}"
 
-    rm_resp = requests.delete(fluid_controller+f"/{service_name}")
+    print(rm_url)
+
+    rm_resp = requests.delete(rm_url)
+    print(rm_resp.json())
+    time.sleep(60)
     assert rm_resp.status_code == 200
 
     # retrieve list of services and check testing_image has been removed
