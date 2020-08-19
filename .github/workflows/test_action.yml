@@ -32,7 +32,7 @@ jobs:
           jenkins-url: ${{ secrets.JENKINS_URL }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: 'devops-qa'
-          job-path: '/job/Fluid/job/fluid-controller-deploy'
+          job-path: 'job/Fluid/job/fluid-controller-deploy'
           job-params: '{"ENV": "dev", "CLIENT": "gs", "PORT": ${{ env.PORT}}}'
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
@@ -67,7 +67,7 @@ jobs:
           jenkins-url: ${{ secrets.JENKINS_URL }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: 'devops-qa'
-          job-path: '/job/Fluid/job/fluid-controller-stop'
+          job-path: 'job/Fluid/job/fluid-controller-stop'
           job-params: '{"ENV": "dev", "CLIENT": "gs"}'
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
