@@ -21,9 +21,8 @@ controller = URL + ":" + PORT
 def test_register_service():
     service = config["service"]
     fluid_controller = f"{controller}/service"
+
     # register service
-    print(fluid_controller)
-    print(service)
     resp = requests.post(fluid_controller, json=service)
     # assert request response is successful
     assert resp.status_code == 200
@@ -38,7 +37,7 @@ def test_register_service():
     # list controller services (one added)
     url = f"{controller}/services"
     services = requests.get(url).json()
-    print(services)
+
     assert isinstance(services, list)
     assert services[-1]['name'] == 'testing_image'
 
