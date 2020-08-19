@@ -9,9 +9,10 @@ controller = URL + ":" + PORT
 
 
 def test_controller_is_running():
+    time.sleep(60)
     endpoint = "/services"
     resp = requests.get(controller + endpoint)
     assert resp.status_code == 200
     assert isinstance(resp.json(), list)
-    time.sleep(120)
+    time.sleep(60)
 
