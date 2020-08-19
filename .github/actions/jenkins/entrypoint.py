@@ -22,7 +22,7 @@ version = server.get_version()
 print(f"Hello {user['fullName']} from Jenkins {version}")
 
 # build job
-job_name = re.search("([^\/]+$)", JOB_PATH).group()
+job_name = JOB_PATH.replace("/job", "")[1:]
 print(job_name)
 server.build_job(job_name, parameters=json.loads(JOB_PARAMS), token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
