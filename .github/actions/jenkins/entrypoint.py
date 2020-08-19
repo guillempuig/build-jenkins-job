@@ -23,6 +23,7 @@ print(f"Hello {user['fullName']} from Jenkins {version}")
 
 # build job
 job_name = re.search("([^\/]+$)", JOB_PATH).group()
+print(job_name)
 server.build_job(job_name, parameters=json.loads(JOB_PARAMS), token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 queue_id = queue_info[0].get('id')
