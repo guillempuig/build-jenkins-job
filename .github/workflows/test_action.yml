@@ -25,8 +25,8 @@ jobs:
       - name: Set controller port
         run: |
           echo '::set-env name=PORT::8500'
-          echo '::set-env name=ENV::test'
-          echo '::set-env name=CLIENT::gs'
+          echo '::set-env name=ENV::"test"'
+          echo '::set-env name=CLIENT::"gs"'
       - name: Deploy controller
         if: ${{ always() }}
         uses: ./.github/actions/jenkins # Uses an action in the root directory
