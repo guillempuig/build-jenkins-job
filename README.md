@@ -20,12 +20,22 @@ This action builds/triggers a jenkins job, waiting it to be finished and enablin
 
 **Required** 
 
+E.g.
+```
+if job inside folder:
+ "job/folder_name/job/job_name"
+
+if job in jenkins root: 
+ "job/job_name"
+```
+
 ### `job-params`
 
 **Not mandatory**
 
-Set jenkins params as JSON string:
-i.e 
+Set jenkins params as JSON string:  
+
+E.g.
 ```
  "{'param1': 'value1', 'param2': 'value2'}"
 ``` 
@@ -48,8 +58,8 @@ i.e
         jenkins-url: ${{ secrets.JENKINS_URL }}
         jenkins-token: ${{ secrets.JENKINS_TOKEN }}
         user: "jenkins-username"
-        job-path: "/job/Fluid/job/fluid-controller-deploy"
+        job-path: "/job/folder_name/job/job_name"
         job-params: "{'param1': 'value1', 'param2': 'value2'}"
     - name: Get job status
       run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
-``
+```

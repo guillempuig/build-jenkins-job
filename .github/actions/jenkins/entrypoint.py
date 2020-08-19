@@ -7,6 +7,7 @@ import requests
 import jenkins
 import time
 import json
+import re
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]
@@ -21,7 +22,7 @@ version = server.get_version()
 print(f"Hello {user['fullName']} from Jenkins {version}")
 
 # build job
-job_name = JOB_PATH.replace("/job", "")[1:]
+job_name = re.search("([^\/]+$)", JOB_PATH).group()
 server.build_job(job_name, parameters=json.loads(JOB_PARAMS), token=JENKINS_TOKEN)
 queue_info = server.get_queue_info()
 queue_id = queue_info[0].get('id')
