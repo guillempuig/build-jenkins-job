@@ -7,7 +7,6 @@ import requests
 import jenkins
 import time
 import json
-import re
 
 JENKINS_URL = sys.argv[1]
 JENKINS_TOKEN = sys.argv[2]

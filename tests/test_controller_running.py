@@ -1,5 +1,3 @@
-import time
-
 import requests
 import os
 
@@ -9,7 +7,6 @@ controller = URL + ":" + PORT
 
 
 def test_controller_is_running():
-    time.sleep(60)
     endpoint = "/services"
     resp = requests.get(controller + endpoint)
     assert resp.status_code == 200
