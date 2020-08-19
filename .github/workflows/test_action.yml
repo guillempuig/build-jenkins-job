@@ -33,7 +33,7 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: 'devops-qa'
           job-path: 'job/Fluid/job/fluid-controller-deploy'
-          job-params: '{"ENV": "dev", "CLIENT": "gs", "PORT": ${{ env.PORT}}}'
+          job-params: '{"ENV": "test", "CLIENT": "gs", "PORT": ${{ env.PORT}}}'
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
       - name: Check controller is running
@@ -68,6 +68,6 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           user: 'devops-qa'
           job-path: 'job/Fluid/job/fluid-controller-stop'
-          job-params: '{"ENV": "dev", "CLIENT": "gs"}'
+          job-params: '{"ENV": "test", "CLIENT": "gs"}'
       - name: Get the job status
         run: echo "Job status is ${{ steps.job-build.outputs.job_status }}"
