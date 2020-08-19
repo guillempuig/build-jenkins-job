@@ -22,6 +22,8 @@ def test_register_service():
     service = config["service"]
     fluid_controller = f"{controller}/service"
     # register service
+    print(fluid_controller)
+    print(service)
     resp = requests.post(fluid_controller, json=service)
     # assert request response is successful
     assert resp.status_code == 200
